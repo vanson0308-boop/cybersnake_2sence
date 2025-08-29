@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Refresh" content="0; url=index_portrait.html">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redirecting…</title>
+<script>
+(function(){
+  function go(){
+    var ls = window.matchMedia && window.matchMedia('(orientation: landscape)').matches;
+    var target = ls ? 'index_landscape.html' : 'index_portrait.html';
+    if (location.pathname.endsWith(target) === false) location.replace(target);
+  }
+  go();
+  var mq = window.matchMedia('(orientation: landscape)');
+  if (mq.addEventListener) mq.addEventListener('change', go);
+  else if (mq.addListener) mq.addListener(go);
+  // Fallback UI
+  window.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('m').onclick = function(){ location.href='index_portrait.html'; };
+    document.getElementById('d').onclick = function(){ location.href='index_landscape.html'; };
+  });
+})();
+</script>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto;background:#0b1923;color:#9cf}
+.main{min-height:100svh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+button{padding:10px 14px;border-radius:10px;border:1px solid #2c3e50;background:#111;color:#9cf}
+</style>
+</head>
+<body>
+<div class="main">
+  <div>偵測方向中…若未自動導向，請手動選擇：</div>
+  <div>
+    <button id="m">直式</button>
+    <button id="d">橫式</button>
+  </div>
+</div>
+</body>
+</html>
